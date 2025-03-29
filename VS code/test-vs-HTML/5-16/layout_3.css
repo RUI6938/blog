@@ -1,0 +1,10 @@
+/* layout_3.css */
+*{padding:0px;margin:0 auto;font-weight:bolder;font-size:28px;}
+#container{width:100%;}
+#header{height:100px;background:#99CC66;margin-bottom:5px;}
+#menu {height:30px;background:#669933;margin-bottom:5px;}
+#mainContent{margin-bottom:5px;height:350px;}
+#sidebar{float:left; height:350px;background:#CCFF99;}
+#content{margin-left:205px ;height:350px; background:#FFFFAA; }
+#footer{height:60px; background:#99CC66;}
+.clearfloat{clear:both;}
