@@ -1,0 +1,13 @@
+/* layout_1.css */
+*{margin:0 auto;font-weight:bolder;font-size:28px;line-height:1.5em;}
+#container{width:900px; margin:0 auto;}
+/*header*/
+#header{height:70px;background:#CCFFCC;margin-bottom:8px;}
+#nav{height:40px;background:#CCFFCC;margin-bottom:8px;}
+/*main*/
+#maincontent {margin-bottom:8px;}
+#main{float:left;width:664px;height:400px;background:#FFFF99;}
+#side{float:right;width:228px;height:400px;background:#FFCC99;}
+/*footer*/
+.clearfloat{clear:both;}
+#footer{height:70px;background:#CCFFCC;border-top:8px solid white;}
