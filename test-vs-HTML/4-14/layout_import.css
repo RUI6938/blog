@@ -1,0 +1,7 @@
+/* layout_import.css*/
+#div0 {
+	border: 1px solid red;width: 900px;margin: 5px auto;	
+	padding: 10px;box-shadow: 0 0 10px #F1DAF3;/* 设置边框阴影 */
+}
+
+#div3 {padding: 5px 20px;font-size: 14px;clear: both;}
