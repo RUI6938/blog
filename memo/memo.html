@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>备忘录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            background: #1a1a1a;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-title {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .memo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .memo-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .memo-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .memo-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .memo-content {
+            font-size: 12px;
+            color: #666;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .add-btn {
+            position: absolute;
+            right: 15px;
+            bottom: 180px;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: #FF7B6B;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(255,123,107,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255,123,107,0.4);
+        }
+
+        @media (max-width: 375px) {
+            .container {
+                padding: 15px;
+            }
+
+            .memo-grid {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="window.location.href='../login/login.html'">←</button>
+            <h1 class="page-title">备忘录</h1>
+        </div>
+        
+        <div class="memo-grid" id="memoGrid">
+            <!-- 备忘录卡片将通过 JavaScript 动态生成 -->
+        </div>
+
+        <button class="add-btn" onclick="window.location.href='memo-detail.html'">+</button>
+    </div>
+
+    <script>
+        // 加载并显示所有备忘录
+        function loadMemos() {
+            const memoGrid = document.getElementById('memoGrid');
+            const memos = JSON.parse(localStorage.getItem('memos') || '[]');
+            
+            if (memos.length === 0) {
+                // 如果没有备忘录，显示默认的示例卡片
+                memoGrid.innerHTML = `
+                    <div class="memo-card">
+                        <h3 class="memo-title">开始写下你的第一条备忘录吧</h3>
+                        <p class="memo-content">点击右下角的"+"按钮创建新的备忘录...</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 按最后编辑时间排序，最新的在前面
+            memos.sort((a, b) => new Date(b.lastEdited) - new Date(a.lastEdited));
+
+            memoGrid.innerHTML = memos.map(memo => `
+                <div class="memo-card" onclick="openMemo('${memo.id}')">
+                    <h3 class="memo-title">${memo.title}</h3>
+                    <p class="memo-content">${memo.content}</p>
+                </div>
+            `).join('');
+        }
+
+        // 打开备忘录详情
+        function openMemo(id) {
+            window.location.href = `memo-detail.html?id=${id}`;
+        }
+
+        // 页面加载时显示备忘录
+        window.onload = loadMemos;
+    </script>
+</body>
+</html> 

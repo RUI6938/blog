@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>备忘录详情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            background: #1a1a1a;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #444;
+        }
+
+        .delete-btn {
+            position: absolute;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: #FF4B4B;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: #FF3333;
+            transform: scale(1.05);
+        }
+
+        .page-title {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 50px;
+        }
+
+        .memo-detail {
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .memo-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        .memo-title:focus {
+            border-bottom: 1px solid #3f2b96;
+        }
+
+        .memo-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+            min-height: 300px;
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .memo-content:focus {
+            color: #fff;
+        }
+
+        .memo-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .save-btn {
+            padding: 8px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .edit-btn {
+            padding: 8px 20px;
+            background: #3f2b96;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background: #4f3ba6;
+            transform: translateY(-2px);
+        }
+
+        .delete-btn-bottom {
+            padding: 8px 20px;
+            background: #FF4B4B;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn-bottom:hover {
+            background: #FF3333;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="checkAndReturn()">←</button>
+            <h1 class="page-title">备忘录详情</h1>
+            <button class="delete-btn" style="visibility: hidden;">×</button>
+        </div>
+        
+        <div class="memo-detail">
+            <input type="text" class="memo-title" placeholder="请输入标题..." value="">
+            <textarea class="memo-content" placeholder="请输入内容..."></textarea>
+            <div class="memo-footer">
+                <span>创建时间：2024-04-19 16:30</span>
+                <div class="button-group">
+                    <button class="save-btn" onclick="saveMemo()">保存</button>
+                    <button class="edit-btn" onclick="editMemo()">编辑</button>
+                    <button class="delete-btn-bottom" onclick="confirmDelete()">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const titleInput = document.querySelector('.memo-title');
+        const contentTextarea = document.querySelector('.memo-content');
+        let hasChanges = false;
+        let currentMemoId = new URLSearchParams(window.location.search).get('id');
+
+        // 页面加载时检查是否有要编辑的备忘录
+        window.onload = function() {
+            if (currentMemoId) {
+                loadMemo(currentMemoId);
+            }
+        }
+
+        // 监听输入变化
+        titleInput.addEventListener('input', () => hasChanges = true);
+        contentTextarea.addEventListener('input', () => hasChanges = true);
+
+        function checkAndReturn() {
+            if (hasChanges) {
+                if (confirm('您有未保存的更改，确定要返回吗？')) {
+                    window.location.href = 'memo.html';
+                }
+            } else {
+                window.location.href = 'memo.html';
+            }
+        }
+
+        function confirmDelete() {
+            if(confirm('确定要删除这条备忘录吗？')) {
+                if (currentMemoId) {
+                    // 获取现有备忘录列表
+                    let memos = JSON.parse(localStorage.getItem('memos') || '[]');
+                    // 删除当前备忘录
+                    memos = memos.filter(memo => memo.id !== currentMemoId);
+                    // 保存更新后的列表
+                    localStorage.setItem('memos', JSON.stringify(memos));
+                }
+                alert('删除成功');
+                window.location.href = 'memo.html';
+            }
+        }
+
+        function loadMemo(id) {
+            const memos = JSON.parse(localStorage.getItem('memos') || '[]');
+            const memo = memos.find(m => m.id === id);
+            if (memo) {
+                titleInput.value = memo.title;
+                contentTextarea.value = memo.content;
+                document.querySelector('.memo-footer span').textContent = 
+                    '最后编辑：' + new Date(memo.lastEdited).toLocaleString();
+            }
+        }
+
+        function saveMemo() {
+            if (titleInput.value.trim() === '') {
+                alert('请输入标题');
+                titleInput.focus();
+                return;
+            }
+            if (contentTextarea.value.trim() === '') {
+                alert('请输入内容');
+                contentTextarea.focus();
+                return;
+            }
+
+            // 获取现有备忘录列表
+            let memos = JSON.parse(localStorage.getItem('memos') || '[]');
+            
+            const memoData = {
+                id: currentMemoId || Date.now().toString(),
+                title: titleInput.value.trim(),
+                content: contentTextarea.value.trim(),
+                lastEdited: new Date().toISOString()
+            };
+
+            if (currentMemoId) {
+                // 更新现有备忘录
+                const index = memos.findIndex(memo => memo.id === currentMemoId);
+                if (index !== -1) {
+                    memos[index] = memoData;
+                }
+            } else {
+                // 添加新备忘录
+                currentMemoId = memoData.id;
+                memos.push(memoData);
+            }
+
+            // 保存到localStorage
+            localStorage.setItem('memos', JSON.stringify(memos));
+            
+            hasChanges = false;
+            alert('保存成功');
+            
+            // 更新显示的时间
+            document.querySelector('.memo-footer span').textContent = 
+                '最后编辑：' + new Date().toLocaleString();
+        }
+
+        function editMemo() {
+            titleInput.focus();
+        }
+
+        // 自动聚焦标题输入框
+        window.onload = function() {
+            titleInput.focus();
+        }
+    </script>
+</body>
+</html> 
