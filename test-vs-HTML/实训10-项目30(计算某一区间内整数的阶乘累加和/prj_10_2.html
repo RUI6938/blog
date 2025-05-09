@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> 计算某一区间内整数的阶乘累加和</title>
+    <style type="text/css">
+      fieldset {
+        margin: 20px auto;width:500px;padding: 18px 50px;
+        border: 2px solid #000000;text-align: center;
+      }
+      legend {font-weight: bold;}
+      *{font-size: 18px; }
+      label,input{margin: 5px auto;}
+    </style>
+    <script type="text/javascript" src="./factorial.js"></script>
+  </head>
+  <body>
+    <form action="" method="post">
+      <fieldset>
+      <legend align="center">计算某一区间内整数的阶乘累加和</legend>
+      <!-- 设置标记的id -->
+      <label>区间起始整数M：</label><input type="number" id="m" value="5"/><br>
+      <label>区间终止整数N：</label><input type="number" id="n" value="15"/> <br>
+      <label>阶乘累加和：</label><input type="number" id="sum" value="" readonly/> <br>
+      <input type="button" value="计算阶乘累加和" onclick="displaySum()"/>
+      <input type="reset" value="清空" />
+    </fieldset>       
+    </form>   
+  </body>
+</html>
