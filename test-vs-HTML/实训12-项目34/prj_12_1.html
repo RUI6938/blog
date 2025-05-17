@@ -1,0 +1,128 @@
+<!-- prj_12_1.html -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>体彩大乐透投注程序</title>
+		<style type="text/css">
+			div {
+				width: 563px;
+				height: 400px;
+				margin: 0px auto;
+				border: 2px solid #ff3300;
+			}
+
+			h2 {
+				font-size: 22px;
+				text-align: center;
+			}
+
+			td {
+				font-weight: bold;
+				font-size: 16px;
+				text-align: center;
+			}
+
+			input {
+				font-size: 16px;
+					}
+
+			[type='button'] {
+				margin: 2px 20px;
+				width: 120px;
+				padding: 5px;
+			}
+			#dalete{
+				width:450px;
+				color: red;
+				font-size: 22px;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			function $(id) {
+				return document.getElementById(id);
+			}
+
+			function frontSel35to5() {
+				// 定义数组并初始化
+				var number35 = new Array(35);
+				for (var i = 0; i < 35; i++) {
+					number35[i] = (101 + i).toString().substr(1, 2);
+				}
+				// 随机产生，35选5
+				var number5 = new Array(5);
+				for (var i = 0; i < 5; i++) {
+					number5[i] = number35[Math.floor(Math.random() * number35.length)]
+				}
+				$("number1").value = number5.sort().toString();
+				return number5.sort().toString();
+			}
+
+			function endtSel12to2() {
+				// 定义数组并初始化
+				var number12 = new Array(12);
+				for (var i = 0; i < 12; i++) {
+					number12[i] = (101 + i).toString().substr(1, 2);
+				}
+				var number2 = new Array(2);
+				for (var i = 0; i < 2; i++) {
+					number2[i] = number12[Math.floor(Math.random() * number12.length)]
+				}
+				$("number2").value = number2.sort().toString();
+				return number2.sort().toString();
+			}
+
+			function joinNumber() {
+				var number1 = $("number1").value;
+				var number2 = $("number2").value;
+				if (number1 != "" & number2 != "") {
+					$("dalete").value = number1 + "+" + number2 + "(1注，2元)";
+				}
+			}
+
+			function createNumber() {
+				// 合成大乐透号码，并显示在div中。
+				var number = frontSel35to5() + "+" + endtSel12to2() + "(1注，2元)"
+				$("dalete").value = number;
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="" class="">
+			<img src="tycp.jpg">
+			<form method="post" action="">
+				<table align="center" width="250px" cellspacing="5px">
+					<caption>
+						<h2>体彩大乐透投注程序</h2>
+					</caption>
+					<tr>
+						<td>前区号码-35选5</td>
+						<td>后区-12选2</td>
+					</tr>
+					<tr>
+						<td><input type="text" name="number1" id="number1" readonly></td>
+						<td><input type="text" name="number2" id="number2" readonly>
+					</tr>
+					<tr>
+						<td><input type="button" name="" id="" value="前区机选" onclick="frontSel35to5()" /></td>
+						<td><input type="button" name="" id="" value="后区机选" onclick="endtSel12to2()" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="button" value="确认合并" onclick="joinNumber()">
+							<input type="button" value="机选1注" onclick="createNumber()"><input type="reset" value="清空">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input id="dalete" type="text" readonly>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+
+</html>
