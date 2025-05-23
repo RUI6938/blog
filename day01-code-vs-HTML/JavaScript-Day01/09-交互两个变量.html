@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例-交换两个变量的值</title>
+</head>
+<body>
+    <script>
+        //分析：核心思路：使用一个 临时变量 用来做中间存储
+        let num1 = 10
+        let num2 = 20
+        let temp 
+        //都是把右边传递给左边
+        temp = num1
+        num1 = num2
+        num2 = temp
+        console.log(num1,num2)
+    </script>
+</body>
+</html>
