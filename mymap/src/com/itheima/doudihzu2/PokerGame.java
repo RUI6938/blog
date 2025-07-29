@@ -38,10 +38,11 @@ public class PokerGame {
     }
 
     public PokerGame(){
-    //洗牌
+        //洗牌
+        // 将 list 中的序号随机打乱
         Collections.shuffle(list);
 
-        //发牌
+        //发牌（用 TreeSet 保证各自手牌按序号自动排序）
         TreeSet<Integer> lord = new TreeSet<>();
         TreeSet<Integer> player1 = new TreeSet<>();
         TreeSet<Integer> player2 = new TreeSet<>();
