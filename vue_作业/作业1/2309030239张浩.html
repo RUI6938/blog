@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2309030239张浩</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 20px; }
+    h1 { font-size: 14px; color: #666; margin-bottom: 12px; }
+    .big { font-size: 48px; font-weight: 700; margin: 10px 0; }
+    .name { font-size: 28px; font-weight: 600; margin: 10px 0; }
+    button { padding: 6px 12px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 页面内容 -->
+    <h1>helloWorld</h1>
+    <div class="big">{{ number }}</div>
+    <div class="name">{{ personName }}</div>
+    <div>
+      <button @click="inc">单击counter+1</button>
+      <span> &nbsp; 当前 counter: {{ counter }}</span>
+    </div>
+  </div>
+
+  <!-- 使用 Vue 3 开发版（global dev build）——可被 Vue Devtools 识别 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // 创建根组件
+    const App = {
+      name: 'AppRoot',
+      data() {
+        return {
+          number: 123,
+          personName: 'Jack',
+          counter: 0
+        }
+      },
+      methods: {
+        inc() { this.counter += 1; }
+      }
+    };
+
+    const app = Vue.createApp(App);
+
+    // 开启 devtools（确保使用的是开发版 Vue，且浏览器已安装 Vue Devtools 扩展）
+    app.config.devtools = true;
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
