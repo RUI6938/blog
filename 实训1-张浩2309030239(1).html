@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张浩2309030239</title>
+</head>
+<body>
+    <script src="./vue.global.js"></script>
+    <div id="app">
+        <h3>欢迎您来到web技术大学</h3>
+        <p>我的专业是：{{ myselect }}</p>
+        <select v-model="myselect">
+            <option value="" disabled>请选择您的专业</option>
+            <option value="计科">计科</option>
+            <option value="软工">软工</option>
+            <option value="信管">信管</option>
+            <option value="大数据">大数据</option>
+        </select>
+
+    </div>
+
+    <script>
+    const {createApp}  = Vue
+    createApp({
+        data() {
+            return {
+                myselect:""
+            }
+        },
+    }).mount("#app")
+    </script>
+</body>
+</html>
