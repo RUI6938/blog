@@ -7,7 +7,7 @@
     <style>
         .box {
             display: flex;
-            /* 弹性盒子在侧轴方向没有尺寸才能控制 */
+            /* 弹性盒子在侧轴方向没有尺寸才能拉伸 */
             /* align-items: stretch; */
 
             /* align-items: center; */
@@ -25,9 +25,12 @@
             background-color: pink;
         }
 
+        /* 第二个div，侧轴居中对齐 */
         .box div:nth-child(2) {
             align-self: center;
         }
+
+
     </style>
 </head>
 <body>
