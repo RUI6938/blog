@@ -1,0 +1,100 @@
+<!-- vue-ex-2-2.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>张浩</title>
+    <script src="vue.global.js" type="text/javascript"></script>
+    <style type="text/css">
+      input {
+        width: 150px;
+        height: 25px;
+        border-radius: 4px;
+      }
+
+      fieldset {
+        margin: 0 auto;
+        padding: 20px;
+        width: 600px;
+        border: 1px double #008000;
+        text-align: center;
+      }
+      span {
+        /* margin: 2px 10px; */
+        margin: 2px;
+      }
+    #p1{
+      width: 580px;padding: 10px;
+      background-color: #f1f2f3;
+      overflow:scroll;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <form>
+          <fieldset id="">
+            <legend align="center">区间整数累加和</legend>
+            区间起始数：<input type="number" required v-model="start"/>
+            区间终止数：<input type="number" required v-model="end"/><br />
+            累加和：<input  type="text" readonly v-model="sum"/><br />
+            区间内能够被7整除的整数有：
+            <p id="p1">
+              <span v-for="num in div7">{{num}}</span>
+            </p>
+           
+            <input type="button"  value="计算累加和" @click="sumInt"/>
+            <input type="button" value="重置" @click="clear"/>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <script>
+      const{ createApp }=Vue
+      createApp({
+        data(){
+          return{
+            start:"",
+            end:"",
+            sum:""
+          }
+        },
+        methods: {
+          clear(){
+            this.start = "";
+            this.end = "";
+            this.sum= "";
+          },
+          sumInt(){
+            this.sum=0;
+            const num1 = parseInt(this.start);
+            const num2 = parseInt(this.end);
+            if(num1 !=NaN && num2 !=NaN && num1<=num2){
+              for(let i=num1; i<=num2; i++){
+                this.sum += i;
+              }
+            }else{
+              alert("请输入合法数据！");
+              this.clear();
+            }
+          }
+        },
+        computed:{
+          div7(){
+            const number = new Array();
+            for(let i=0,index = this.start;index <= this.end;index++){
+              if(index%7 == 0){
+                number[i] = index;
+                i++
+              }
+            }
+            console.log(number);
+            return number;
+          }
+
+        }
+      }).mount("#app")
+    </script>
+  </body>
+</html>
