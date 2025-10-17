@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张浩</title>
+    <script src="./vue.global.js"></script>
+    <style>
+        fieldset {
+            margin: 0 auto;
+            width: 400px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>课程模块维护</legend>
+            课程代号：<input type="text" v-model="id"><br>
+            课程名称：<input type="text" v-model="name"><br>
+            课程学分：<input type="text" v-model="credit"><br>
+            <button @click="addCourse">曾选课程</button>
+            <button @click="clear">清空</button>
+        </fieldset>
+        <fieldset>
+            <legend>课程模块清单</legend>
+            <p v-for="(course,index) in courses" :key="course.id">
+            {{index+1}}--{{course.id}}--{{course.name}}--{{course.credit}}
+            <button @click="deleteCourse(index)">删除</button>
+            </p>
+        </fieldset>
+    </div>
+    <script>
+        const {createApp} = Vue
+        createApp({
+        data(){
+            return{
+                id:"",
+                name:"",
+                credit:"",
+                courses:[
+                    {id:"2309030239",name:"计算机网络",credit:"4"},
+                    {id:"2309030239",name:"java程序设计",credit:"3"},
+                    {id:"2309030239",name:"数据结构",credit:"2"},
+                    {id:"2309030239",name:"web客户端编程",credit:"1"},
+                ]
+            }
+        },
+        methods:{
+            clear(){
+                this.id="";
+                this.name="";
+                this.credit=""
+            },
+            addCourse(){
+                if(this.id != "" && this.name != "" && this.credit != ""){
+                    this.courses.unshift(
+                    {
+                        id:this.id,
+                        name:this.name,
+                        credit:this.credit
+                    }
+                    );
+                }else{
+                    alert("请输入合法数据！");
+                    this.clear();
+                }
+            },
+            deleteCourse(index){
+                this.courses.splice(index,1);
+            }
+        },
+    }).mount("#app")
+    </script>
+</body>
+</html>
