@@ -4,45 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>张浩</title>
-    <script type="text/javascript" src="./vue.global.js"></script>
+    <script src="../实训3-1/vue.global(1).js"></script>
+    <style>
+        fieldset {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <fieldset style="text-align: center">
+        <fieldset>
             <legend align="center">前端框架技术丛书展览</legend>
-            <div v-img="bookimage.url" v-for="bookimage in bookimages">
-            </div>
+            <div v-img="bookimage.url" v-for="bookimage in bookimages"></div>
         </fieldset>
     </div>
-    <script type="text/javascript">
+    <script>
         const App = {
             data(){
                 return {
-                    bookimages:[
-                        { url:"./ex-32-image-1.jpg"},
-                        { url:"./ex-32-image-2.jpg"},
-                        { url:"./ex-32-image-3.jpg"},
+                    bookimages :[
+                        {url:'ex-32-image-1.jpg'},
+                        {url:'ex-32-image-2.jpg'},
+                        {url:'ex-32-image-3.jpg'},
+                    ]
+                }
+            }
 
-                    ],
-                };
-            },
-        };
+        }
         const app = Vue.createApp(App);
-        app.directive("img",(el,binding) =>{
+        app.directive("img",(el,binding) => {
             el.style.width = 145 + "px";
             el.style.height = 202 + "px";
-            el.style.display = "index-block";
+            el.style.display = "inline-block";
             el.style.padding = "10px";
-            el.style.border = "1px dashed black"
+            el.style.border = "1px dashed black";
 
-            //设置背景图像代码片段
-            el.style.backgroudImage = "url("+ binding.value +")";
-            el.style.backgroudRepeat = "no-repeat";
-            el.style.backgroudPosition = "center center";
-        },
-    
-    );
-    const instance = app.mount("#app");
+            // 设置背景图像
+            el.style.backgroundImage = "url("+ binding.value +")";
+            el.style.backgroundRepeat = "no-repeat";
+            el.style.backgroundPosition = "center center";
+        })
+        app.mount("#app");
+
     </script>
 </body>
 </html>
