@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张浩</title>
+    <script src="./vue.global.js"></script>
+    <style>
+        #app {
+            margin: 0 auto;
+            width: 600px;
+            height: 370px;
+            border: 15px solid #cacaca;
+            text-align: center;
+            border-radius: 25px;
+        }
+
+        button,input {
+            border-radius: 10px;
+            height: 24px;
+            border: 1px dashed #0000fe;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <send-data></send-data>
+    </div>
+    <template id="temp1">
+        <div>
+            <fieldset>
+                <legend align="center">父组件</legend>
+                <h2>计算任意区间连续整数累加和</h2>
+                <p>
+                    起始数:<input type="number" min="1" max="500" v-model="startNum"/>
+                    终止数:<input type="number" min="100" max="1000" v-model="endNum"/>
+                </p>
+                <p>累加和:{{ sum }}</p>
+                <div id="content" style="color: red;">{{ errText }}</div>
+                <receive-data :number1="startNum" :number2="endNum" @compute="getData" @error="getErrInfo"></receive-data>
+            </fieldset>
+        </div>
+    </template>
+    <template id="temp2">
+        <div>
+            <fieldset>
+                <legend align="center">子组件</legend>
+                <p>接受数据：起始数: = {{ number1 }},终止数 = {{ number2 }}</p>
+                <p>累加和为:{{ result }}</p>
+                <button @click="sum(number1,number2)">计算累加和并发送给父组件</button>
+            </fieldset>
+        </div>
+    </template>
+    <script>
+        //定于App组件
+        const App  = {
+            data(){
+                return{
+                    errText:"",
+                }
+            }
+        }
+        //定于Vue实例
+        const app = Vue.createApp(App);
+        // 定于并全局注册事件
+        app.component("sendData",{
+            data(){
+                return{
+                    startNum: 1,
+                    endNum: 100,
+                    sum: 0,
+                }
+            },
+            template:'#temp1',
+            methods: {
+                getData(result){
+                    this.sum = result;
+                },
+                getErrInfo(result){
+                    this.errText = result;
+                }
+            },
+        })
+        // 定义并注册子组件---完成累加和和计算并传递给父组件
+        app.component("receiveData",{
+            data(){
+                return{
+                    result: 0,
+
+                }
+            },
+            template: '#temp2',
+            emits:["error","compute"],
+            props:["number1","number2"],
+            methods:{
+                sum(num1,num2){
+                    this.result = 0;
+                    if(num1 >= num2){
+                        // 通过自定义error事件，发送错误消息
+                        this.$emit("error","父组件中起始数不能大于等于终止数！请重新输入数据！")
+                        
+                    }else{
+                        for(let index = num1; index <= num2; index++){
+                            this.result += index;
+                        }
+                    }
+                    this.$emit("compute" ,this.result);//发送给父组件
+                }
+            }
+        })
+        app.mount("#app");
+    </script>
+</body>
+</html>
