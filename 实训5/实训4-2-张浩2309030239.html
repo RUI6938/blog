@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张浩</title>
+    <script src="./vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <son1 :name="name" :age="age" :sex="sex" @update-data="updateData">
+            <!-- 定义具名插拔 -->
+             <template v-slot:top>
+                <div class="box">
+                    <h3>top：这里是具名插拔的应用</h3>
+                    <p>{{ name }} - {{ age }} - {{ sex }}</p>
+                </div>
+             </template>
+             <!-- 定义具名插拔 -->
+              <template #bottom="scope">
+                <div class="box">
+                    <h3>bottom:使用子组件中的数据(作用域插槽传值)</h3>
+                    <p>{{ name }} - {{ age }} - {{ sex }}</p>
+                    <h3>本学期选修课程</h3>
+                    <ul>
+                        <li v-for="course in scope.course" :key="course.name">
+                            {{ course.name }},{{ course.price }}元
+                        </li>
+                    </ul>
+                </div>
+              </template>
+            </son1>
+    </div>
+    <script>
+        // 定义组件App
+        const App = {
+            data(){
+                return{
+                    name:'张ly',
+                    age: '18',
+                    sex: '女'
+                }
+            },
+            methods: {
+                updateData(data1){
+                    this.name = data1.name;
+                    this.age = data1.age;
+                    this.sex = data1.sex;
+                }
+            },
+        }
+        const = app = 
+    </script>
+</body>
+</html>
