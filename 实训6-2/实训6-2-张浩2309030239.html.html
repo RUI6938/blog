@@ -1,0 +1,104 @@
+<!-- vue-ex-6-2.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>随机抽题题号排序</title>
+    <script src="./lodash.min.js"></script>
+    <script src="./vue.global.js"></script>
+    <style type="text/css">
+      .my-list-item {
+        display: inline-block;
+        margin-right: 10px;
+        transition: all 1s;
+      }
+      .my-list-enter-from,
+      .my-list-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .my-list-leave-active {
+        position: absolute;
+      }
+
+      p {
+        font-size: 24px;
+        color: red;
+      }
+
+      button {
+        border: 1px dashed #0000fe;
+        border-radius: 10px;
+        width: 130px;
+        height: 30px;
+        margin: 0 10px;
+      }
+
+      span {
+        border: 1px dashed green;
+        border-radius: 20px;
+        background-color: #fcf2f3;
+        width: 35px;
+        height: 35px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="demo">
+      <h3>随机抽题排序题号(不重复)</h3>
+      <button @click="randomExtrct">随机抽取题号</button>
+      <button @click="randomRemove">随机删除题号</button>
+      <button @click="randomShuffle">题号打乱排序</button>
+      <transition-group name="my-list" tag="p">
+        <span v-for="value in extrctNo" class="my-list-item" :key="value">
+          {{ value }}
+        </span>
+      </transition-group>
+    </div>
+    <script type="text/javascript">
+      const App = {
+        data() {
+          return {
+            questionBank: [], // 存放题库30题题号
+            extrctNo: [], // 存放抽取出来的题号
+          };
+        },
+        methods: {
+          // 题库生成题号
+          createNo() {
+            for (let i = 0; i < 30; i++) {
+              this.questionBank[i] = (i + 1).toString();
+            }
+          },
+          // 随机产生索引位号
+          randomIndex(arr) {
+            return Math.floor(Math.random() * arr.length);
+          },
+          // 在随机抽取15题题号，存放到extrctNo
+          randomExtrct() {
+            this.createNo();
+            for (let i = 0; i < 15; i++) {
+              let index = this.randomIndex(this.questionBank);
+              this.extrctNo[i] = this.questionBank[index];
+              //  抽题后，需要在原questionBank数组中删除，避免题号重复
+              this.questionBank.splice(index, 1);
+            }
+          },
+          // 随机删除任意一个位置上的数字
+          randomRemove() {
+            let index = this.randomIndex(this.extrctNo);
+            this.extrctNo.splice(index, 1);
+          },
+          // 重新排序（洗牌）
+          randomShuffle() {
+            this.extrctNo = _.shuffle(this.extrctNo);
+          },
+        },
+      };
+      const { createApp } = Vue;
+      createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
