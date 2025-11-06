@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        <!-- 2-求任意数组的最大值,并返回 -->
+        function getArr(getArr = []) {
+            // (1).先准备一个max变量存放数组的第一个值
+            let max = getArr[0]
+            // (2).遍历数组
+            for(i = 1;i <= getArr.length; i++){
+                if(max < getArr[i]) {
+                    max = getArr[i]
+                }
+            }            
+            // (3).返回值
+            return max
+        }
+            let max = getArr([1,2,3,4,5])
+            console.log(max)
+    </script>
+
+</body>
+</html>
