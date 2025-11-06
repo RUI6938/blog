@@ -1,0 +1,163 @@
+<!-- vue-ex-6-1.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>三大前端框架技术简介</title>
+    <script type="text/javascript" src="./vue.global.js"></script>
+  </head>
+  <style>
+    .component-fade-enter-active,
+    .component-fade-leave-active {
+      transition: opacity 3s ease;
+    }
+
+    .component-fade-enter-from,
+    .component-fade-leave-to {
+      opacity: 0;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .box {
+      width: 800px;
+      height: 250px;
+      margin: 0 auto;
+      border: 1px solid #000;
+    }
+
+    .tabs li {
+      float: left;
+      margin-right: 8px;
+      list-style-type: none;
+    }
+
+    .tabs .tab-link {
+      display: block;
+      width: 250px;
+      height: 49px;
+      text-align: center;
+      line-height: 49px;
+      background-color: #e9eeef;
+      color: rgb(14, 13, 13);
+      text-decoration: none;
+      font-size: 24px;
+    }
+
+    .tabs .tab-link.active {
+      height: 47px;
+      border-bottom: 2px solid #e35885;
+      color: #ff0000;
+      transition: 1s;
+    }
+
+    .weblogo {
+      width: 800px;
+      height: 63px;
+      background: url("./ex-6-1-web.jpg") no-repeat left top;
+    }
+
+    .weblogo h3 {
+      padding-left: 260px;
+      padding-top: 15px;
+    }
+
+    .comp {
+      clear: both;
+      padding: 10px;
+      text-align: center;
+    }
+    .comp p {
+      padding-top: 10px;
+      text-indent: 2em;
+      text-align: left;
+    }
+  </style>
+  <body>
+    <div id="app" class="box">
+      <div class="weblogo">
+        <h3>主流前端框架技术</h3>
+      </div>
+      <ul class="tabs">
+        <li v-for="(tab,index) in tabsArray">
+          <a href="#"  class="tab-link"  @click="tabsChangeComp(index)"
+            v-bind:class="{active:tab.isActive}">{{tab.name}}</a>
+        </li>
+      </ul>
+      
+      <!-- 渲染组件，带过渡效果 -->
+      <transition name="component-fade" mode="out-in">
+        <!-- :is 等价 v-bind:is -->
+        <component v-bind:is="displayComp"></component>
+      </transition>
+    </div>
+
+    <!-- 模板（<template id="...">）与组件注册 -->
+    <template id="vueComp">
+      <div class="comp">
+        <h3>vue.js</h3>
+        <p>Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式JavaScript框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用（SPA）提供驱动。</p>
+      </div>
+    </template>
+    <template id="reactComp">
+      <div class="comp">
+        <h3>React</h3>
+        <p>Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式JavaScript框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用（SPA）提供驱动。</p>
+      </div>
+    </template>
+    <template id="angularComp">
+      <div class="comp">
+        <h3>Angular</h3>
+        <p>Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式JavaScript框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用（SPA）提供驱动。</p>
+      </div>
+    </template>
+  </body>
+  <script>
+    const {createApp} = Vue 
+    createApp({
+      data() {
+        return {
+          tabsArray: [{name:"Vue.js",isActive:true},{name:"Reactive",isActive:false},{name:"Angular",isActive:false},],
+          displayComp: "comp1",
+        };
+      },
+      components: {
+        comp1: {template:"#vueComp"},
+        comp2: {template:"#reactComp"},
+        comp3: {template:"#angularComp"},
+      },
+      methods: {
+        tabsChangeComp(tabIndex) {
+          switch (tabIndex) {
+            case 0: {
+              this.displayComp = "comp1";
+              //修改tabsArray数组中的每个元素的isActive值
+              this.tabsArray[0].isActive = true;
+              this.tabsArray[1].isActive = false;
+              this.tabsArray[2].isActive = false;
+              break;
+            }
+            case 1: {
+              this.displayComp = "comp2";
+              //修改tabsArray数组中的每个元素的isActive值
+              this.tabsArray[0].isActive = false;
+              this.tabsArray[1].isActive = true;
+              this.tabsArray[2].isActive = false;
+              break;
+            }
+            default: {
+              this.displayComp = "comp3";
+              //修改tabsArray数组中的每个元素的isActive值
+              this.tabsArray[0].isActive = false;
+              this.tabsArray[1].isActive = false;
+              this.tabsArray[2].isActive = true;
+              break;
+            }
+          }
+        },
+      },}).mount("#app")
+  </script>
+</html>
