@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>张浩</title>
+
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <fieldset>
+      <legend>学生成绩预警系统</legend>
+
+      <p>姓名：{{student.name}}，年龄：{{student.age}}，平均成绩：{{averageScore}}</p>
+      <p>最高分：{{highScore}}，最低分：{{lowScore}}</p>
+      <p>课程成绩：{{score}}</p>
+
+      <hr>
+
+      <p><input type="number" v-model="oneScore"></p>
+      <button @click="addScore">添加课程成绩</button>
+
+      <p class="red" v-show="isActive">课程平均成绩低于75分，请认真对待！</p>
+
+    </fieldset>
+  </div>
+
+  <script>
+    const App = {
+      setup() {
+        const { ref, reactive, toRefs, watchEffect, computed } = Vue;
+
+        const oneScore = ref(0);
+        const isActive = ref(false);
+        const score = reactive([100, 98, 75, 65, 77]);
+
+        const student = reactive({
+          name: '储久良',
+          age: 21,
+          averageScore: computed(() => {
+            let sum = 0;
+            for (let index = 0; index < score.length; index++) {
+              sum += score[index];
+            }
+            return (sum / score.length).toFixed(0);
+          })
+        });
+
+        const highScore = computed(() => Math.max(...score));
+        const lowScore = computed(() => Math.min(...score));
+
+        watchEffect(() => {
+          if (student.averageScore < 75) {
+            isActive.value = true;
+            console.log("平均成绩低于75分，请认真对待！");
+          } else {
+            isActive.value = false;
+          }
+        });
+
+        const addScore = () => {
+          score.push(oneScore.value);
+        };
+
+        return {
+          highScore,
+          lowScore,
+          student,
+          addScore,
+          isActive,
+          oneScore,
+          score,
+          ...toRefs(student)
+        };
+      }
+    };
+
+    Vue.createApp(App).mount('#app');
+  </script>
+
+</body>
+
+</html>
