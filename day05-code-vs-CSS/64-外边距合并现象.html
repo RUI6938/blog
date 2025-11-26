@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 合并场景 ---->垂直排列的兄弟元素，上下margin会合并
+           合并现象 ---->取两个margin中的较大值生效 */
+
+        /*！！！ 如果两个垂直排列的盒子，上下都有margin会发生合并，取较大值（不会相加） */
+        .one {
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            margin-bottom: 20px;
+        }
+
+        .two {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            /* 取较大值生效 */
+            margin-top: 50px;   
+        }
+    </style>
+</head>
+<body>
+    <div class="one">one</div>
+    <div class="two">two</div>
+</body>
+</html>
