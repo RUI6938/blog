@@ -1,0 +1,81 @@
+
+@font-face {
+    font-family: 'itheima';
+    src: url('./fonts/MiFie-Web-Font.eot') format('embedded-opentype'),
+    url('./fonts/MiFie-Web-Font.woff') format('woff'),
+    url('./fonts/MiFie-Web-Font.ttf') format('truetype'),
+    url('./fonts/MiFie-Web-Font.svg') format('svg');
+}
+
+.heima_icon{
+    font-family: itheima;
+}
+
+/*顶部通栏*/
+
+.heima_icon_phone::before{
+    content: "\e908";
+}
+
+.heima_icon_tel::before{
+    content: "\e909";
+    font-size: 14px;
+}
+
+/*产品信息*/
+
+.heima_icon_E903::before{
+    content: "\e903";
+}
+
+.heima_icon_E907::before{
+    content: "\e907";
+}
+
+.heima_icon_E901::before{
+    content: "\e901";
+}
+
+.heima_icon_E900::before{
+    content: "\e900";
+}
+
+.heima_icon_E904::before{
+    content: "\e904";
+}
+
+.heima_icon_E902::before{
+    content: "\e902";
+}
+
+/*预约交易*/
+
+.heima_icon_E906::before{
+    content: "\e906";
+}
+
+.heima_icon_E905::before{
+    content: "\e905";
+}
+
+/* 基础公共样式：清除默认样式 + 设置通用样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font: 14px/1.5 "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  color: #333;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
