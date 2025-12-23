@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>远方的家乡</title>
+    <link rel="stylesheet" href="libs/bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="libs/bootstrap-4.6.0-dist/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="libs/bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--顶部通栏-->
+    <header class="heima_topBar d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="javascript:;" class="heima_app">
+                        <span class="heima_icon heima_icon_phone"></span>
+                        <span>云南文化网</span>
+                        <img src="images/code.png" alt="">
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <span class="heima_icon heima_icon_tel"></span>
+                    <span>400-618-4000(服务时间9:00-21:00)</span>
+                </div>
+                <div class="col-md-2">
+                    <a href="javascript:;">常见问题</a>
+                    <a href="javascript:;" class="ml-2">旅游攻略</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="javascript:;" class="btn btn-danger btn-sm heima_btn_register ma-2">免费注册</a>
+                    <a href="javascript:;">登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <!-- 头部区域 -->
+  <div class="header">
+    <div class="wrapper">
+      <!-- logo -->
+      <div class="logo">
+        <h1><a href="#">写好云南故事</a></h1>
+      </div>
+      <!-- 导航 -->
+      <div class="nav">
+        <ul>
+          <li><a href="#" class="active">首页</a></li>
+          <li><a href="#">热点</a></li>
+          <li><a href="#">今日关注</a></li>
+        </ul>
+      </div>
+      <!-- 搜索 -->
+      <div class="search">
+        <input type="text" placeholder="请输入云南文化关键词">
+        <a href="#"></a>
+      </div>
+      <!-- 用户 -->
+      <div class="user">
+        <a href="#">
+          <img src="./images/Snipaste_2025-12-17_11-04-45.png" alt="">
+          <span>张浩</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+<!--轮播图-->
+<div class="heima_banner">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+        </ol>
+        <a href="#carousel" class="carousel-control-prev" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a href="#carousel" class="carousel-control-next" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <picture>
+                    <source srcset="images/slide_01_640x340.jpg" media="(max-width:768px)">
+                    <img src="./images/2025-12-06 101129.png" alt="">
+                </picture>
+            </div>
+            <div class="carousel-item">
+                <picture>
+                    <source srcset="images/slide_02_640x340.jpg" media="(max-width:768px)">
+                    <img src="./images/2025-12-06 100426.png" alt="">
+                </picture>
+            </div>
+            <div class="carousel-item">
+                <picture>
+                    <source srcset="images/slide_03_640x340.jpg" media="(max-width:768px)">
+                    <img src="./images/2025-12-06 095913.png" alt="">
+                </picture>
+            </div>
+            <div class="carousel-item">
+                <picture>
+                    <source srcset="images/slide_04_640x340.jpg" media="(max-width:768px)">
+                    <img src="./images/2025-12-06 095730.png" alt="">
+                </picture>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- banner 区域 -->
+  <div class="banner">
+    <div class="wrapper">
+      <div class="left">
+        <ul>
+          <li><a href="#">必去景点推荐</a></li>
+          <li><a href="#">古城古村探索</a></li>
+          <li><a href="#">民族文化万象</a></li>
+          <li><a href="#">节日仪式 · 民俗展演</a></li>
+          <li><a href="#">云南味道 · 地方美食</a></li>
+          <li><a href="#">匠人手作 · 传统技艺</a></li>
+          <li><a href="#">文化遗产与历史记忆</a></li>
+          <li><a href="#">云南故事集</a></li>
+          <li><a href="#">非遗的温度</a></li>
+        </ul>
+      </div>
+      <div class="right">
+        <h3>今日文化推荐</h3>
+        <div class="content">
+          <dl>
+            <dt>云南风景精选</dt>
+            <dd><span>正在浏览</span>-<strong>发现玉龙雪山与洱海的绝美风光</strong></dd>
+          </dl>
+          <dl>
+            <dt>民族文化探索专题  </dt>
+            <dd><span>正在了解</span>-<strong>白族三道茶与傣族泼水节的传统魅力</strong></dd>
+          </dl>
+          <dl>
+            <dt>非遗技艺·匠人故事</dt>
+            <dd><span>正在阅读</span>-<strong>走进宣威火腿、扎染、银器手工的制作过程</strong></dd>
+          </dl>
+          <a href="#">查看全部文化内容</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 精品推荐 -->
+  <div class="recommend wrapper">
+    <h3>→</h3>
+    <ul>
+      <li><a href="#"></a></li>
+
+    </ul>
+    <a href="#" class="modify">修改兴趣</a>
+  </div>
+
+  <!-- 精品推荐课程 -->
+  <div class="course wrapper">
+    <!-- 标题 -->
+    <div class="hd">
+      <h3>精彩推荐</h3>
+      <a href="#" class="more">查看全部</a>
+    </div>
+    <!-- 内容 -->
+    <div class="bd">
+      <ul>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100027.png" alt=""></div>
+            <div class="text">
+              <h4>去有风的地方，感受洱海的浪漫</h4>
+              <p><span>热门景点</span> · <i>1125</i>人正在浏览</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100006.png" alt=""></div>
+            <div class="text">
+              <h4>大理的秋冬，藏着成年人最需要的松弛感</h4>
+              <p><span>人文旅拍</span> · <i>2726</i>次热度关注</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100549.png" alt=""></div>
+            <div class="text">
+              <h4>📍丽江隐藏秘境：闯进了无人打扰的雪山童话</h4>
+              <p><span>自然探索</span> · <i>9456</i>人近期查看</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100154.png" alt=""></div>
+            <div class="text">
+              <h4>“百里不同风，千里不同俗”丽江古城</h4>
+              <p><span>文化名城</span> · <i>7192</i>次在线热度</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100630.png" alt=""></div>
+            <div class="text">
+              <h4>麦子熟了几千次，农民万岁第一次</h4>
+              <p><span>乡村纪实</span> · <i>2703</i>人点赞收藏</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100224.png" alt=""></div>
+            <div class="text">
+              <h4>扎染: 探秘千年白族扎染的魅力!</h4>
+              <p><span>非遗工艺</span> · <i>2841</i>人正在了解</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100246.png" alt=""></div>
+            <div class="text">
+              <h4>千年不熄的生命密码—彝族火把节</h4>
+              <p><span>民族节庆</span> · <i>95682</i>次节日热度记录</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100817.png" alt=""></div>
+            <div class="text">
+              <h4>誓言不朽，同心永结。让石榴花开别样红--少数民族</h4>
+              <p><span>同心文化</span> · <i>904</i>人打卡关注</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100506.png" alt=""></div>
+            <div class="text">
+              <h4>傣族泼水节：把祝福泼进每一滴清凉里</h4>
+              <p><span>节庆氛围</span> · <i>1516</i>人参与互动</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pic"><img src="./images/2025-12-06 100539.png" alt=""></div>
+            <div class="text">
+              <h4>香格里拉｜离天堂最近的地方</h4>
+              <p><span>高原胜景</span> · <i>2766</i>人关注中</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<!--产品信息-->
+<div class="heima_info d-none d-sm-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-3">
+                <a href="javascript:;">
+                    <div class="media">
+                        <span class="heima_icon heima_icon_E903 mr-3"></span>
+                        <div class="media-body">
+                            <h4 class="mt-0">旅行无忧保障</h4>
+                            <p>全面保障您的旅行安全与权益，让每一段旅程都安心无忧。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-3">
+                <a href="javascript:;">
+                    <div class="media">
+                        <span class="heima_icon heima_icon_E901 mr-3"></span>
+                        <div class="media-body">
+                            <h4 class="mt-0">目的地精选安全</h4>
+                            <p>精心挑选优质旅游目的地，确保每一处景点的安全与独特魅力。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-3">
+                <a href="javascript:;">
+                    <div class="media">
+                        <span class="heima_icon heima_icon_E900 mr-3"></span>
+                        <div class="media-body">
+                            <h4 class="mt-0">旅行守护计划</h4>
+                            <p>从预定到返程，为您提供全方位的安全与保障服务，做您的“旅行守护者”。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-3">
+                <a href="javascript:;">
+                    <div class="media">
+                        <span class="heima_icon heima_icon_E904 mr-3"></span>
+                        <div class="media-body">
+                            <h4 class="mt-0">畅游无忧</h4>
+                            <p>每一次旅行，我们为您提供精心策划的安全保障，让您尽情享受美好时光。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-3">
+                <a href="javascript:;">
+                    <div class="media">
+                        <span class="heima_icon heima_icon_E902 mr-3"></span>
+                        <div class="media-body">
+                            <h4 class="mt-0">全球旅行网络</h4>
+                            <p>通过全球合作伙伴，提供最新旅行资讯与地道体验，带给您全球旅游的新视野。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-3">
+                <a href="javascript:;">
+                    <div class="media">
+                        <span class="heima_icon heima_icon_E907 mr-3"></span>
+                        <div class="media-body">
+                            <h4 class="mt-0">精品资源推荐</h4>
+                            <p>为您甄选独特景点与特色住宿，让您的旅行充满难忘的回忆。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <!-- 版权 -->
+  <div class="footer">
+    <div class="wrapper">
+      <div class="left">
+        <a href="#"><img src="./images/Snipaste_2025-12-17_11-26-40.png" alt=""></a>
+        <p>远方的家乡在旅行中探索中国最美的景点，带你走进中国各地的自然风光与历史文化。
+          © 2025年2974409832@qq.com保留所有权利。</p>
+        <a href="#" class="download">下载APP</a>
+      </div>
+      <div class="right">
+        <dl>
+          <dt>关于云南文化网</dt>
+          <dd><a href="#">关于我们</a></dd>
+          <dd><a href="#">管理团队</a></dd>
+          <dd><a href="#">文化活动</a></dd>
+          <dd><a href="#">联系我们</a></dd>
+          <dd><a href="#">帮助</a></dd>
+        </dl>
+        <dl>
+          <dt>文化探索指南</dt>
+          <dd><a href="#">探索云南文化</a></dd>
+          <dd><a href="#">体验云南美食</a></dd>
+          <dd><a href="#">参与非遗保护</a></dd>
+          <dd><a href="#">云南节庆活动</a></dd>
+        </dl>
+        <dl>
+          <dt>合作伙伴</dt>
+          <dd><a href="#">合作机构</a></dd>
+          <dd><a href="#">文化导师</a></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+</body>
+</html>
